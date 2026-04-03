@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavínia Podóloga</title>
+  <meta name="description" content="Lavínia Podóloga - Cuidado especializado para seus pés. Agende sua consulta.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(30, 25%, 97%);
+      --foreground: hsl(20, 15%, 15%);
+      --card: hsl(0, 0%, 100%);
+      --card-foreground: hsl(20, 15%, 15%);
+      --primary: hsl(346, 45%, 55%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --secondary: hsl(30, 30%, 93%);
+      --secondary-foreground: hsl(20, 15%, 25%);
+      --muted: hsl(30, 15%, 92%);
+      --muted-foreground: hsl(20, 8%, 50%);
+      --accent: hsl(36, 55%, 70%);
+      --accent-foreground: hsl(20, 15%, 15%);
+      --border: hsl(30, 15%, 88%);
+      --whatsapp: hsl(142, 70%, 49%);
+      --whatsapp-hover: hsl(142, 70%, 42%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(38,30,25,0.6), rgba(38,30,25,0.4), rgba(38,30,25,0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 640px;
+    }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.875rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      animation: fade-up 0.8s ease-out forwards;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-foreground);
+      line-height: 1.1;
+      animation: fade-up 0.8s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-divider {
+      width: 4rem;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.5rem auto;
+      animation: fade-up 0.8s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-desc {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.125rem;
+      font-weight: 300;
+      animation: fade-up 0.8s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* ===== SERVIÇOS ===== */
+    .services {
+      padding: 5rem 1.5rem;
+      background: var(--card);
+    }
+
+    .services-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--primary);
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      border-radius: 1rem;
+      background: var(--background);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(190, 80, 100, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .service-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: rgba(190, 80, 100, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ===== SOBRE ===== */
+    .about {
+      padding: 5rem 1.5rem;
+      background: rgba(225, 215, 200, 0.3);
+    }
+
+    .about-inner {
+      max-width: 768px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-desc {
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .info-card .icon { font-size: 1.25rem; color: var(--primary); margin-bottom: 0.25rem; }
+    .info-card .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+    .info-card .value { font-size: 0.875rem; font-weight: 500; color: var(--foreground); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 2rem 1.5rem 6rem;
+      background: var(--foreground);
+      text-align: center;
+    }
+
+    footer .brand {
+      font-family: 'Playfair Display', serif;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer .copy {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.875rem;
+    }
+
+    /* ===== WHATSAPP ===== */
+    .whatsapp-wrap {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .whatsapp-btn {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--whatsapp);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s;
+      animation: pulse-soft 2.5s ease-in-out infinite;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--whatsapp-hover);
+      transform: scale(1.05);
+      animation: none;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 640px) {
+      .info-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 3.75rem; }
+      .hero-desc { font-size: 1.25rem; }
+      .section-title { font-size: 2.25rem; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-bg" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1920&q=80" alt="Ambiente de spa">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle">Cuidado &amp; Bem-estar</p>
+      <h1>Lavínia Podóloga</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">Seus pés merecem atenção especial. Agende sua consulta e sinta a diferença de um cuidado profissional.</p>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services">
+    <div class="services-inner">
+      <p class="section-label">Serviços</p>
+      <h2 class="section-title">O que posso fazer por você</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Podologia Clínica</h3>
+          <p>Tratamento especializado para unhas encravadas, calos, calosidades e fissuras.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">❤️</div>
+          <h3>Cuidado Preventivo</h3>
+          <p>Avaliação completa dos pés para prevenir problemas e manter a saúde podológica.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Pé Diabético</h3>
+          <p>Atenção especializada para pacientes diabéticos com protocolos de segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about">
+    <div class="about-inner">
+      <p class="section-label">Sobre</p>
+      <h2 class="section-title">Lavínia Podóloga</h2>
+      <p class="about-desc">Profissional dedicada ao cuidado dos seus pés, com atendimento humanizado e técnicas atualizadas para garantir seu conforto e saúde.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <span class="icon">📍</span>
+          <span class="label">Localização</span>
+          <span class="value">Consulte via WhatsApp</span>
+        </div>
+        <div class="info-card">
+          <span class="icon">🕐</span>
+          <span class="label">Horário</span>
+          <span class="value">Seg - Sáb</span>
+        </div>
+        <div class="info-card">
+          <span class="icon">📞</span>
+          <span class="label">Contato</span>
+          <span class="value">(32) 99801-6614</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="brand">👣 Lavínia Podóloga</p>
+    <p class="copy">© 2026 — Todos os direitos reservados</p>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <div class="whatsapp-wrap">
+    <a class="whatsapp-btn" href="https://wa.me/5532998016614?text=Ola!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.%20Voce%20pode%20me%20informar%20os%20horarios%20disponiveis?" target="_blank" rel="noopener noreferrer">
+      📱 Falar no WhatsApp
+    </a>
+  </div>
+
+</body>
+</html>
