@@ -3,262 +3,699 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavínia - Podologia | Cuidado para seus Pés</title>
-
-    <!-- SEO / Compartilhamento -->
-    <meta property="og:title" content="Lavínia Podóloga | Cuidado para seus Pés">
-    <meta property="og:description" content="Agende sua consulta com atendimento profissional e especializado em podologia.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1519415510236-8559119946b7?w=1200">
-    <meta property="og:type" content="website">
-
+    <title>Lavínia - Podologia Clínica e Estética</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        :root {
+            --primary: #059669; /* emerald-600 */
+            --primary-dark: #047857; /* emerald-700 */
+            --accent: #f59e0b; /* amber-500 */
+        }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* Floating Buttons */
+        .float-btn {
+            position: fixed;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 100px;
+            right: 25px;
             background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 100;
+            color: white;
             width: 60px;
             height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
+            font-size: 28px;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
+        .chatbot-float {
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .back-to-top {
+            bottom: 25px;
+            left: 25px;
+            background-color: white;
+            color: var(--primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .float-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        /* Hero Styling */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519415510236-8559119946b7?auto=format&fit=crop&q=80&w=1920');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Chatbot Window */
+        #chatbot-window {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 350px;
+            max-width: 90vw;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 101;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+        }
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-body {
+            height: 350px;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #f8fafc;
+        }
+        .chat-bubble {
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 14px;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+        .chat-bot {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .chat-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        .chat-option {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chat-option:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-
 <body class="bg-slate-50 text-slate-800">
 
-<!-- NAVBAR -->
-<nav class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between h-16 items-center">
-        <span class="text-emerald-600 font-bold text-2xl">
-            Lavínia <span class="text-slate-500 font-normal">Podologia</span>
-        </span>
-
-        <div class="hidden md:flex space-x-4">
-            <a href="#inicio">Início</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#contato" class="bg-emerald-600 text-white px-4 py-2 rounded-full">Agendar</a>
-        </div>
-    </div>
-</nav>
-
-<!-- HERO -->
-<section id="inicio" class="bg-white py-20">
-    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
-
-        <div>
-            <h1 class="text-4xl md:text-5xl font-bold">
-                Cuidado completo <br>
-                <span class="text-emerald-600">para seus pés</span>
-            </h1>
-
-            <p class="mt-4 text-lg text-gray-600">
-                Atendimento profissional em podologia clínica e estética.
-            </p>
-
-            <div class="mt-6 flex gap-4 flex-col sm:flex-row">
-
-                <!-- FORMULÁRIO -->
-                <a href="href="cadastro.html"
-"
-                   target="_blank"
-                   class="bg-emerald-600 text-white px-6 py-3 rounded-full">
-                   Agendar Consulta
-                </a>
-
-                <!-- WHATSAPP -->
-                <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
-                   target="_blank"
-                   class="border border-emerald-600 text-emerald-600 px-6 py-3 rounded-full">
-                   WhatsApp
-                </a>
-
+    <!-- Header / Navbar -->
+    <nav id="navbar" class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center text-white mr-3">
+                        <i class="fas fa-shoe-prints text-xl rotate-45"></i>
+                    </div>
+                    <span class="text-emerald-700 font-bold text-2xl tracking-tight">Lavínia <span class="text-slate-400 font-light">Podologia</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-slate-600 hover:text-emerald-600 font-medium transition">Início</a>
+                    <a href="#servicos" class="text-slate-600 hover:text-emerald-600 font-medium transition">Serviços</a>
+                    <a href="#sobre" class="text-slate-600 hover:text-emerald-600 font-medium transition">Sobre</a>
+                    <a href="#depoimentos" class="text-slate-600 hover:text-emerald-600 font-medium transition">Depoimentos</a>
+                    <a href="#contato" class="bg-emerald-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-emerald-700 transition shadow-md shadow-emerald-100">Agendar Consulta</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 text-2xl"><i class="fas fa-bars"></i></button>
+                </div>
             </div>
         </div>
-
-        <img src="https://images.unsplash.com/photo-1519415510236-8559119946b7?w=1000"
-             class="rounded-2xl shadow-lg">
-    </div>
-</section>
-
-<!-- SERVIÇOS -->
-<section id="servicos" class="py-20 text-center">
-    <h2 class="text-3xl font-bold">Nossos Serviços</h2>
-
-    <div class="grid md:grid-cols-3 gap-6 mt-10 max-w-5xl mx-auto">
-
-        <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="font-bold">Podologia Clínica</h3>
-            <p>Unha encravada, calos e tratamentos.</p>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 p-4 absolute w-full shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#inicio" class="text-slate-600 font-medium">Início</a>
+                <a href="#servicos" class="text-slate-600 font-medium">Serviços</a>
+                <a href="#sobre" class="text-slate-600 font-medium">Sobre</a>
+                <a href="#depoimentos" class="text-slate-600 font-medium">Depoimentos</a>
+                <a href="#contato" class="bg-emerald-600 text-white px-6 py-2.5 rounded-full font-semibold text-center">Agendar</a>
+            </div>
         </div>
+    </nav>
 
-        <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="font-bold">Podopediatria</h3>
-            <p>Cuidado especializado para crianças.</p>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center lg:text-left">
+            <div class="lg:max-w-3xl animate__animated animate__fadeInUp">
+                <span class="inline-block py-1 px-4 rounded-full bg-emerald-600/20 text-emerald-300 text-sm font-bold tracking-wider uppercase mb-6 backdrop-blur-sm border border-emerald-500/30">Podologia Clínica e Estética</span>
+                <h1 class="text-5xl lg:text-8xl font-bold text-white leading-tight mb-8">
+                    Cuidando da <br>
+                    <span class="text-emerald-400">sua base.</span>
+                </h1>
+                <p class="text-xl text-slate-100 mb-12 max-w-2xl leading-relaxed opacity-90">
+                    Sinta o alívio imediato e recupere sua mobilidade com tratamentos especializados realizados por quem entende de saúde dos pés.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+                    <a href="#contato" class="flex items-center justify-center px-10 py-5 bg-emerald-600 text-white rounded-2xl font-bold text-lg hover:bg-emerald-700 transition shadow-2xl shadow-emerald-900/40 group">
+                        Começar Agendamento
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition"></i>
+                    </a>
+                    <a href="#servicos" class="flex items-center justify-center px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold text-lg hover:bg-white/20 transition">
+                        Ver Especialidades
+                    </a>
+                </div>
+            </div>
         </div>
-
-        <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="font-bold">Pé Diabético</h3>
-            <p>Tratamento preventivo e seguro.</p>
+        <!-- Scroll Down Button -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#servicos" class="text-white text-3xl opacity-50 hover:opacity-100 transition">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
+    </section>
 
+    <!-- Trust Stats -->
+    <section class="bg-white py-12 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="reveal">
+                    <p class="text-4xl font-bold text-emerald-600 mb-1">+5000</p>
+                    <p class="text-sm text-slate-500 font-medium">Pacientes Atendidos</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold text-emerald-600 mb-1">100%</p>
+                    <p class="text-sm text-slate-500 font-medium">Biossegurança</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold text-emerald-600 mb-1">10</p>
+                    <p class="text-sm text-slate-500 font-medium">Anos de Experiência</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold text-emerald-600 mb-1">4.9</p>
+                    <p class="text-sm text-slate-500 font-medium">Avaliação no Google</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Por que cuidar? Section -->
+    <section class="py-24 bg-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">A base da sua saúde</h2>
+                <div class="w-20 h-1.5 bg-emerald-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-500 max-w-2xl mx-auto">Tratamentos que vão além da estética, focados na prevenção e alívio de dores crônicas.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white p-10 rounded-3xl shadow-sm card-hover transition duration-300 reveal">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Prevenção</h3>
+                    <p class="text-slate-500 leading-relaxed">Identificamos patologias precocemente para evitar intervenções cirúrgicas dolorosas.</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm card-hover transition duration-300 reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8">
+                        <i class="fas fa-heart text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Conforto</h3>
+                    <p class="text-slate-500 leading-relaxed">Pés descansados e livres de calosidades proporcionam um dia a dia muito mais leve.</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm card-hover transition duration-300 reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-8">
+                        <i class="fas fa-walking text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Liberdade</h3>
+                    <p class="text-slate-500 leading-relaxed">Caminhe, corra e exercite-se sem se preocupar com dores ou desconfortos nos pés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6 reveal">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">Tratamentos de Elite</h2>
+                    <p class="text-lg text-slate-600">Tecnologia e cuidado clínico para todos os tipos de necessidades podológicas.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-emerald-600 hover:text-emerald-600 transition"><i class="fas fa-chevron-left"></i></button>
+                    <button class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-emerald-600 hover:text-emerald-600 transition"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Serviço 1 -->
+                <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] bg-slate-900 reveal">
+                    <img src="https://images.unsplash.com/photo-1519415510236-8559119946b7?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700" alt="Unha Encravada">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Unhas Encravadas</h3>
+                        <p class="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Tratamento indolor para alívio imediato e correção definitiva.</p>
+                    </div>
+                </div>
+                <!-- Serviço 2 -->
+                <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] bg-slate-900 reveal" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700" alt="Calosidades">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Calosidades</h3>
+                        <p class="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Remoção profissional com hidratação de alta performance.</p>
+                    </div>
+                </div>
+                <!-- Serviço 3 -->
+                <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] bg-slate-900 reveal" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700" alt="Pé Diabético">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Pé Diabético</h3>
+                        <p class="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Prevenção rigorosa e tratamento para evitar complicações.</p>
+                    </div>
+                </div>
+                <!-- Serviço 4 -->
+                <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] bg-slate-900 reveal" style="transition-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1520222984843-df35ebc0f24d?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700" alt="Laserterapia">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Laserterapia</h3>
+                        <p class="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Tecnologia avançada para combate a micoses e inflamações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 relative reveal">
+                    <div class="absolute -inset-4 bg-emerald-100 rounded-[3rem] -rotate-3"></div>
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800" alt="Profissional Lavínia" class="relative z-10 rounded-[3rem] shadow-2xl">
+                    <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-2xl shadow-xl z-20 hidden md:block animate-bounce-slow">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">Referência Regional</p>
+                                <p class="text-xs text-slate-500">Podologia Clínica Avançada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight">Ciência e <span class="text-emerald-600">Empatia</span> no atendimento.</h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        Meu nome é Lavínia e meu propósito é transformar vidas através do cuidado com os pés. Entendo que cada paciente traz uma história e uma necessidade única.
+                    </p>
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                        No meu espaço, você não encontra apenas um tratamento, mas um porto seguro para cuidar da sua saúde com as melhores ferramentas e um olhar humanizado.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-12">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <span class="font-semibold text-slate-700">Alta Tecnologia</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-hand-holding-medical"></i>
+                            </div>
+                            <span class="font-semibold text-slate-700">Cuidado Total</span>
+                        </div>
+                    </div>
+                    <a href="#contato" class="inline-flex items-center justify-center px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition shadow-lg">
+                        Conheça minha trajetória
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section id="depoimentos" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">Vidas Transformadas</h2>
+                <div class="w-20 h-1.5 bg-emerald-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Depoimento 1 -->
+                <div class="bg-slate-50 p-10 rounded-3xl relative reveal">
+                    <i class="fas fa-quote-left absolute top-8 left-8 text-emerald-200 text-4xl"></i>
+                    <p class="text-slate-600 mb-8 relative z-10 italic">"Estava há meses sofrendo com dor. A Lavínia resolveu em uma única sessão com um cuidado incrível. Serei paciente fiel agora."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?u=1" alt="Paciente">
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-900">Ana Souza</p>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="bg-slate-50 p-10 rounded-3xl relative reveal" style="transition-delay: 0.1s;">
+                    <i class="fas fa-quote-left absolute top-8 left-8 text-emerald-200 text-4xl"></i>
+                    <p class="text-slate-600 mb-8 relative z-10 italic">"O consultório é impecável e o atendimento é de outro nível. Me sinto seguro sabendo de todo o rigor com a higiene."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?u=2" alt="Paciente">
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-900">Carlos Lima</p>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="bg-slate-50 p-10 rounded-3xl relative reveal" style="transition-delay: 0.2s;">
+                    <i class="fas fa-quote-left absolute top-8 left-8 text-emerald-200 text-4xl"></i>
+                    <p class="text-slate-600 mb-8 relative z-10 italic">"Fiz o tratamento com laser e o resultado foi surpreendente. Muito rápida a recuperação. Vale cada centavo!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?u=3" alt="Paciente">
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-900">Mariana Santos</p>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-emerald-600 rounded-[3rem] p-12 lg:p-20 shadow-2xl overflow-hidden relative reveal">
+                <div class="absolute top-0 right-0 p-12 opacity-10">
+                    <i class="fas fa-shoe-prints text-[15rem] rotate-12 text-white"></i>
+                </div>
+                
+                <div class="lg:flex items-center justify-between">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0">
+                        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Pronto para caminhar sem dor?</h2>
+                        <p class="text-xl text-emerald-50 text-opacity-90 mb-10 leading-relaxed">
+                            Agende seu horário agora e garanta o cuidado que seus pés merecem.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 text-white">
+                                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <span>Av. Principal, 1234 - Sala 50 - Centro</span>
+                            </div>
+                            <div class="flex items-center gap-4 text-white">
+                                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <span>Segunda a Sexta: 08h às 18h</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 flex flex-col gap-6">
+                        <a href="https://forms.gle/exemplo" target="_blank" class="bg-white text-emerald-700 px-8 py-5 rounded-2xl font-bold text-xl text-center hover:bg-slate-50 transition shadow-xl group">
+                            Preencher Formulário
+                        </a>
+                        <a href="https://wa.me/5511999999999" target="_blank" class="bg-emerald-500 text-white border-2 border-emerald-400 px-8 py-5 rounded-2xl font-bold text-xl text-center hover:bg-emerald-400 transition shadow-xl flex items-center justify-center gap-3">
+                            <i class="fab fa-whatsapp text-2xl"></i> Falar via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-500 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-shoe-prints text-sm rotate-45"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl">Lavínia Podologia</span>
+                    </div>
+                    <p class="max-w-xs leading-relaxed">
+                        Compromisso com a saúde e bem-estar através de tratamentos clínicos avançados e biossegurança rigorosa.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Navegação</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#inicio" class="hover:text-emerald-500 transition">Início</a></li>
+                        <li><a href="#servicos" class="hover:text-emerald-500 transition">Serviços</a></li>
+                        <li><a href="#sobre" class="hover:text-emerald-500 transition">Sobre</a></li>
+                        <li><a href="#contato" class="hover:text-emerald-500 transition">Agendar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-slate-800 text-center text-xs">
+                <p>&copy; 2026 Lavínia Podologia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/5511999999999" class="float-btn whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="chatbot-trigger" class="float-btn chatbot-float">
+        <i class="fas fa-comments"></i>
     </div>
-</section>
 
-<!-- CONTATO -->
-<section id="contato" class="bg-emerald-600 text-white py-20 text-center">
-    <h2 class="text-3xl font-bold mb-4">Agende sua consulta</h2>
+    <button id="back-to-top" class="float-btn back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    <div class="flex justify-center gap-4 flex-col sm:flex-row">
-
-        <!-- FORM -->
-        <a href="https://brunobernardo248-cyber.github.io/index.html/cadastro.html"
-           target="_blank"
-           class="bg-white text-emerald-600 px-6 py-3 rounded-full">
-           Preencher Formulário
-        </a>
-
-        <!-- WHATS -->
-        <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
-           target="_blank"
-           class="border border-white px-6 py-3 rounded-full">
-           WhatsApp
-        </a>
-
+    <!-- Chatbot Window -->
+    <div id="chatbot-window">
+        <div class="chat-header">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-robot text-sm"></i>
+                </div>
+                <span class="font-bold">Assistente Lavínia</span>
+            </div>
+            <button id="chat-close" class="text-white/70 hover:text-white"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chat-body" class="chat-body">
+            <div class="chat-bubble chat-bot">
+                Olá! 👋 Como posso ajudar você hoje? Escolha uma opção abaixo:
+                <div class="chat-options">
+                    <div class="chat-option" onclick="chatAction('agendar')">📅 Agendar Consulta</div>
+                    <div class="chat-option" onclick="chatAction('servicos')">🩹 Ver Serviços</div>
+                    <div class="chat-option" onclick="chatAction('local')">📍 Localização</div>
+                    <div class="chat-option" onclick="chatAction('falar')">👤 Falar com Lavínia</div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="bg-gray-900 text-white text-center py-6">
-    © 2026 Lavínia Podologia
-</footer>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const btt = document.getElementById('back-to-top');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-0');
+                btt.classList.add('visible');
+            } else {
+                navbar.classList.remove('py-2', 'shadow-md');
+                btt.classList.remove('visible');
+            }
+        });
 
-<!-- BOTÃO FLUTUANTE -->
-<a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
-   class="whatsapp-float"
-   target="_blank">
-   <i class="fab fa-whatsapp"></i>
-</a>
-<!-- CHATBOT -->
-<style>
-.chatbox {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-}
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-.chat-btn {
-    background: #10b981;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-}
+        // Reveal animations on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
 
-.chat {
-    display: none;
-    background: white;
-    width: 300px;
-    height: 400px;
-    border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    overflow-y: auto;
-}
+        // Back to top
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-.msg {
-    margin: 5px;
-    padding: 8px;
-    border-radius: 10px;
-    font-size: 14px;
-}
+        // Chatbot Logic
+        const chatTrigger = document.getElementById('chatbot-trigger');
+        const chatWindow = document.getElementById('chatbot-window');
+        const chatClose = document.getElementById('chat-close');
+        const chatBody = document.getElementById('chat-body');
 
-.bot {
-    background: #e2e8f0;
-}
+        chatTrigger.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
 
-.user {
-    background: #10b981;
-    color: white;
-    text-align: right;
-}
-</style>
+        chatClose.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
 
-<div class="chatbox">
+        function addMessage(text, type = 'bot') {
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble chat-${type} animate__animated animate__fadeInUp`;
+            bubble.innerHTML = text;
+            chatBody.appendChild(bubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
 
-    <div id="chat" class="chat"></div>
+        function chatAction(action) {
+            let response = "";
+            let options = "";
 
-    <div class="chat-btn" onclick="abrirChat()">💬</div>
+            if (action === 'agendar') {
+                response = "Ótima escolha! Você prefere agendar pelo formulário rápido ou direto pelo WhatsApp?";
+                options = `
+                    <div class="chat-options">
+                        <a href="https://forms.gle/exemplo" target="_blank" class="chat-option">📝 Formulário</a>
+                        <a href="https://wa.me/5511999999999" target="_blank" class="chat-option">💬 WhatsApp</a>
+                    </div>
+                `;
+            } else if (action === 'servicos') {
+                response = "Oferecemos diversos tratamentos. Qual o seu interesse?";
+                options = `
+                    <div class="chat-options">
+                        <div class="chat-option" onclick="chatAction('unha')">Unha Encravada</div>
+                        <div class="chat-option" onclick="chatAction('calos')">Calosidades</div>
+                        <div class="chat-option" onclick="chatAction('laser')">Laserterapia</div>
+                    </div>
+                `;
+            } else if (action === 'local') {
+                response = "Estamos localizados na Av. Principal, 1234 - Sala 50 - Centro. Atendemos de Segunda a Sexta das 08h às 18h.";
+            } else if (action === 'falar') {
+                response = "Vou te encaminhar para o WhatsApp pessoal da Lavínia.";
+                setTimeout(() => window.open('https://wa.me/5511999999999', '_blank'), 1500);
+            } else if (action === 'unha' || action === 'calos' || action === 'laser') {
+                response = "Temos especialistas nessa área! Gostaria de agendar uma avaliação para tratar isso?";
+                options = `
+                    <div class="chat-options">
+                        <div class="chat-option" onclick="chatAction('agendar')">Sim, por favor</div>
+                        <div class="chat-option" onclick="chatAction('inicio_chat')">Ver outras opções</div>
+                    </div>
+                `;
+            } else if (action === 'inicio_chat') {
+                response = "Como posso ajudar você?";
+                options = `
+                    <div class="chat-options">
+                        <div class="chat-option" onclick="chatAction('agendar')">📅 Agendar Consulta</div>
+                        <div class="chat-option" onclick="chatAction('servicos')">🩹 Ver Serviços</div>
+                        <div class="chat-option" onclick="chatAction('local')">📍 Localização</div>
+                    </div>
+                `;
+            }
 
-</div>
-
-<script>
-function abrirChat() {
-    let chat = document.getElementById("chat");
-    chat.style.display = chat.style.display === "block" ? "none" : "block";
-
-    if (chat.innerHTML === "") {
-        mensagemBot("Olá! 👣 Bem-vindo(a) à Lavínia Podóloga");
-        mensagemBot("Digite uma opção:");
-        mensagemBot("1 - Agendar consulta");
-        mensagemBot("2 - Ver serviços");
-        mensagemBot("3 - Falar no WhatsApp");
-    }
-}
-
-function mensagemBot(texto) {
-    let chat = document.getElementById("chat");
-    chat.innerHTML += '<div class="msg bot">'+texto+'</div>';
-}
-
-function mensagemUser(texto) {
-    let chat = document.getElementById("chat");
-    chat.innerHTML += '<div class="msg user">'+texto+'</div>';
-}
-
-document.addEventListener("keydown", function(e) {
-
-    if(e.key === "1") {
-        mensagemUser("1");
-        mensagemBot("Clique abaixo para agendar:");
-        mensagemBot("<a href='https://docs.google.com/forms/d/1ytuXyn-orGtjqBLzToNHFqz52hC_bAeMtt3l_VRBHGk/viewform' target='_blank'>Abrir formulário</a>");
-    }
-
-    if(e.key === "2") {
-        mensagemUser("2");
-        mensagemBot("Serviços disponíveis:");
-        mensagemBot("✔ Podologia Clínica<br>✔ Unha encravada<br>✔ Pé diabético");
-    }
-
-    if(e.key === "3") {
-        mensagemUser("3");
-        mensagemBot("<a href='https://wa.me/5532998016614' target='_blank'>Abrir WhatsApp</a>");
-    }
-
-});
-</script>
-
+            addMessage(response + options);
+        }
+    </script>
 </body>
 </html>
