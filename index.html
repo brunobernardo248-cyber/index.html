@@ -157,6 +157,107 @@
    target="_blank">
    <i class="fab fa-whatsapp"></i>
 </a>
+<!-- CHATBOT -->
+<style>
+.chatbox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.chat-btn {
+    background: #10b981;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.chat {
+    display: none;
+    background: white;
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    overflow-y: auto;
+}
+
+.msg {
+    margin: 5px;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.bot {
+    background: #e2e8f0;
+}
+
+.user {
+    background: #10b981;
+    color: white;
+    text-align: right;
+}
+</style>
+
+<div class="chatbox">
+
+    <div id="chat" class="chat"></div>
+
+    <div class="chat-btn" onclick="abrirChat()">💬</div>
+
+</div>
+
+<script>
+function abrirChat() {
+    let chat = document.getElementById("chat");
+    chat.style.display = chat.style.display === "block" ? "none" : "block";
+
+    if (chat.innerHTML === "") {
+        mensagemBot("Olá! 👣 Bem-vindo(a) à Lavínia Podóloga");
+        mensagemBot("Digite uma opção:");
+        mensagemBot("1 - Agendar consulta");
+        mensagemBot("2 - Ver serviços");
+        mensagemBot("3 - Falar no WhatsApp");
+    }
+}
+
+function mensagemBot(texto) {
+    let chat = document.getElementById("chat");
+    chat.innerHTML += '<div class="msg bot">'+texto+'</div>';
+}
+
+function mensagemUser(texto) {
+    let chat = document.getElementById("chat");
+    chat.innerHTML += '<div class="msg user">'+texto+'</div>';
+}
+
+document.addEventListener("keydown", function(e) {
+
+    if(e.key === "1") {
+        mensagemUser("1");
+        mensagemBot("Clique abaixo para agendar:");
+        mensagemBot("<a href='https://docs.google.com/forms/d/1ytuXyn-orGtjqBLzToNHFqz52hC_bAeMtt3l_VRBHGk/viewform' target='_blank'>Abrir formulário</a>");
+    }
+
+    if(e.key === "2") {
+        mensagemUser("2");
+        mensagemBot("Serviços disponíveis:");
+        mensagemBot("✔ Podologia Clínica<br>✔ Unha encravada<br>✔ Pé diabético");
+    }
+
+    if(e.key === "3") {
+        mensagemUser("3");
+        mensagemBot("<a href='https://wa.me/5532998016614' target='_blank'>Abrir WhatsApp</a>");
+    }
+
+});
+</script>
 
 </body>
 </html>
