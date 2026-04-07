@@ -1,65 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavínia - Podologia | Cuidado para seus Pés</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lavínia Podóloga</title>
 
-    <!-- Compartilhamento -->
-    <meta property="og:title" content="Lavínia Podóloga | Cuidado para seus Pés">
-    <meta property="og:description" content="Agende sua consulta com atendimento profissional e especializado.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1519415510236-8559119946b7?w=1200">
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f1f5f9;
+}
 
-    <script src="https://cdn.tailwindcss.com"></script>
+header {
+    background: #10b981;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-    <style>
-        body { font-family: Arial; }
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
 
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-        }
-    </style>
+.btn {
+    padding: 15px 25px;
+    background: #10b981;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+}
+
+.form-section {
+    display: none;
+    margin-top: 40px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+</style>
 </head>
 
 <body>
 
-<!-- TOPO -->
-<div style="padding:20px; text-align:center;">
+<header>
     <h1>Lavínia Podóloga</h1>
     <p>Cuidado profissional para seus pés</p>
-</div>
+</header>
 
-<!-- HERO -->
-<div style="text-align:center; margin-top:40px;">
+<div class="container">
 
-    <!-- BOTÃO FORMULÁRIO -->
-    <a href="https://docs.google.com/forms/d/1ytuXyn-orGtjqBLzToNHFqz52hC_bAeMtt3l_VRBHGk/viewform"
-       target="_blank"
-       style="display:inline-block; padding:15px 25px; background:#10b981; color:white; border-radius:30px; margin:10px;">
-       Preencher Formulário
-    </a>
+    <h2>Agende sua consulta</h2>
 
-    <!-- BOTÃO WHATSAPP -->
-    <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
-       target="_blank"
-       style="display:inline-block; padding:15px 25px; border:2px solid #10b981; color:#10b981; border-radius:30px; margin:10px;">
-       WhatsApp
-    </a>
+    <!-- BOTÃO ABRIR FORMULÁRIO -->
+    <a href="#" class="btn" onclick="mostrarFormulario()">Cadastrar</a>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar"
+       class="btn">WhatsApp</a>
 
 </div>
 
-<!-- SERVIÇOS -->
-<div style="margin-top:60px; text-align:center;">
-    <h2>Serviços</h2>
-    <p>Podologia clínica, pé diabétic
+<!-- FORMULÁRIO -->
+<div class="form-section" id="formulario">
+
+    <form onsubmit="enviarFormulario(event)">
+        <h3>Cadastro</h3>
+
+        <input type="text" placeholder="Nome" required>
+        <input type="tel" placeholder="Telefone" required>
+        <input type="date" required>
+        <textarea placeholder="Descreva o problema"></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+</div>
+
+<!-- BOTÃO WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5532998016614" class="whatsapp">📱</a>
+
+<script>
+function mostrarFormulario() {
+    document.getElementById("formulario").style.display = "block";
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function enviarFormulario(event) {
+    event.preventDefault();
+    alert("Cadastro enviado! Em breve entraremos em contato.");
+}
+</script>
+
+</body>
+</html>
