@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lavínia - Podologia | Cuidado para seus Pés</title>
+
+    <!-- SEO / Compartilhamento -->
+    <meta property="og:title" content="Lavínia Podóloga | Cuidado para seus Pés">
+    <meta property="og:description" content="Agende sua consulta com atendimento profissional e especializado em podologia.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519415510236-8559119946b7?w=1200">
+    <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -19,169 +27,136 @@
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
-            text-align: center;
             font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             z-index: 100;
             width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease;
+            transition: 0.3s;
         }
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- Header / Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-emerald-600 font-bold text-2xl">Lavínia <span class="text-slate-500 font-normal">Podologia</span></span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#inicio" class="text-slate-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium">Início</a>
-                        <a href="#servicos" class="text-slate-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium">Serviços</a>
-                        <a href="#sobre" class="text-slate-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
-                        <a href="#contato" class="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-700 transition duration-300">Agendar</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <!-- Mobile menu button can be added here if needed -->
-                    <a href="#contato" class="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium">Agendar</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- NAVBAR -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between h-16 items-center">
+        <span class="text-emerald-600 font-bold text-2xl">
+            Lavínia <span class="text-slate-500 font-normal">Podologia</span>
+        </span>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative bg-white pt-20 pb-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl">
-                        <span class="block">Cuidado completo</span>
-                        <span class="block text-emerald-600">para seus pés</span>
-                    </h1>
-                    <p class="mt-3 text-base text-slate-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                        Especialista em podologia clínica e estética. Proporcionando saúde, conforto e bem-estar para cada passo da sua vida.
-                    </p>
-                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
-                        <a href="https://forms.gle/exemplo" target="_blank" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-emerald-600 hover:bg-emerald-700 md:py-4 md:text-lg md:px-10 transition duration-300 shadow-lg shadow-emerald-200">
-                            Preencher Formulário
-                        </a>
-                        <a href="https://wa.me/5532998016614" target="_blank" class="flex items-center justify-center px-8 py-3 border border-emerald-600 text-base font-medium rounded-full text-emerald-600 bg-white hover:bg-emerald-50 md:py-4 md:text-lg md:px-10 transition duration-300">
-                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <div class="relative mx-auto w-full rounded-3xl shadow-2xl overflow-hidden">
-                        <img class="w-full" src="https://images.unsplash.com/photo-1519415510236-8559119946b7?auto=format&fit=crop&q=80&w=1000" alt="Podologia e bem-estar">
-                    </div>
-                </div>
-            </div>
+        <div class="hidden md:flex space-x-4">
+            <a href="#inicio">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato" class="bg-emerald-600 text-white px-4 py-2 rounded-full">Agendar</a>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <!-- Serviços Section -->
-    <section id="servicos" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Nossos Serviços</h2>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-500">Tratamentos especializados para garantir a saúde dos seus pés.</p>
-            
-            <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Servico 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300 border border-slate-100">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-6 mx-auto lg:mx-0">
-                        <i class="fas fa-medkit text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Podologia Clínica</h3>
-                    <p class="text-slate-500">Tratamento de unhas encravadas, calos, calosidades e micose de unha.</p>
-                </div>
-                <!-- Servico 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300 border border-slate-100">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-6 mx-auto lg:mx-0">
-                        <i class="fas fa-child text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Podopediatria</h3>
-                    <p class="text-slate-500">Cuidados especializados para os pés das crianças, garantindo um crescimento saudável.</p>
-                </div>
-                <!-- Servico 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300 border border-slate-100">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-6 mx-auto lg:mx-0">
-                        <i class="fas fa-user-md text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Pé Diabético</h3>
-                    <p class="text-slate-500">Prevenção e tratamento especializado para pacientes diabéticos com cuidados preventivos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="inicio" class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
 
-    <!-- Sobre Section -->
-    <section id="sobre" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:flex lg:items-center lg:gap-16">
-                <div class="lg:w-1/2 mb-10 lg:mb-0">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800" alt="Profissional Lavínia" class="rounded-3xl shadow-xl">
-                </div>
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mb-6">Conheça Lavínia</h2>
-                    <p class="text-lg text-slate-600 mb-6">
-                        Com anos de experiência na área da saúde dos pés, Lavínia dedica-se a oferecer tratamentos personalizados com as técnicas mais modernas da podologia.
-                    </p>
-                    <p class="text-lg text-slate-600 mb-8">
-                        Nosso consultório é projetado para oferecer o máximo de conforto e higiene, garantindo que você se sinta seguro e relaxado durante todo o atendimento.
-                    </p>
-                    <a href="#contato" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-emerald-600 hover:bg-emerald-700 transition duration-300">
-                        Falar com Lavínia
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold">
+                Cuidado completo <br>
+                <span class="text-emerald-600">para seus pés</span>
+            </h1>
 
-    <!-- Contato Section -->
-    <section id="contato" class="py-20 bg-emerald-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h2 class="text-3xl font-extrabold sm:text-4xl mb-8">Pronto para cuidar da saúde dos seus pés?</h2>
-            <p class="text-xl mb-12 opacity-90">Agende sua consulta preenchendo o formulário ou entre em contato pelo WhatsApp.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="https://forms.gle/exemplo" target="_blank" class="bg-white text-emerald-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition duration-300">
-                    Preencher Formulário
+            <p class="mt-4 text-lg text-gray-600">
+                Atendimento profissional em podologia clínica e estética.
+            </p>
+
+            <div class="mt-6 flex gap-4 flex-col sm:flex-row">
+
+                <!-- FORMULÁRIO -->
+                <a href="https://docs.google.com/forms/d/1ytuXyn-orGtjqBLzToNHFqz52hC_bAeMtt3l_VRBHGk/viewform"
+                   target="_blank"
+                   class="bg-emerald-600 text-white px-6 py-3 rounded-full">
+                   Agendar Consulta
                 </a>
-                <a href="https://wa.me/5532998016614" target="_blank" class="bg-emerald-500 text-white border-2 border-white px-10 py-4 rounded-full font-bold text-lg hover:bg-emerald-400 transition duration-300">
-                    <i class="fab fa-whatsapp mr-2"></i> Chamar no WhatsApp
+
+                <!-- WHATSAPP -->
+                <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
+                   target="_blank"
+                   class="border border-emerald-600 text-emerald-600 px-6 py-3 rounded-full">
+                   WhatsApp
                 </a>
+
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-8">
-                <span class="text-white font-bold text-2xl">Lavínia Podologia</span>
-            </div>
-            <p class="mb-4">&copy; 2026 Lavínia Podologia. Todos os direitos reservados.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
-            </div>
+        <img src="https://images.unsplash.com/photo-1519415510236-8559119946b7?w=1000"
+             class="rounded-2xl shadow-lg">
+    </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="py-20 text-center">
+    <h2 class="text-3xl font-bold">Nossos Serviços</h2>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10 max-w-5xl mx-auto">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h3 class="font-bold">Podologia Clínica</h3>
+            <p>Unha encravada, calos e tratamentos.</p>
         </div>
-    </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/5532998016614" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h3 class="font-bold">Podopediatria</h3>
+            <p>Cuidado especializado para crianças.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h3 class="font-bold">Pé Diabético</h3>
+            <p>Tratamento preventivo e seguro.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="bg-emerald-600 text-white py-20 text-center">
+    <h2 class="text-3xl font-bold mb-4">Agende sua consulta</h2>
+
+    <div class="flex justify-center gap-4 flex-col sm:flex-row">
+
+        <!-- FORM -->
+        <a href="https://docs.google.com/forms/d/1ytuXyn-orGtjqBLzToNHFqz52hC_bAeMtt3l_VRBHGk/viewform"
+           target="_blank"
+           class="bg-white text-emerald-600 px-6 py-3 rounded-full">
+           Preencher Formulário
+        </a>
+
+        <!-- WHATS -->
+        <a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
+           target="_blank"
+           class="border border-white px-6 py-3 rounded-full">
+           WhatsApp
+        </a>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white text-center py-6">
+    © 2026 Lavínia Podologia
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<a href="https://wa.me/5532998016614?text=Olá!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta"
+   class="whatsapp-float"
+   target="_blank">
+   <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
