@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro - Lavínia Podóloga</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f1f5f9;
+    margin: 0;
+}
+
+header {
+    background: #10b981;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    background: white;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cadastro</h1>
+</header>
+
+<form>
+    <label>Nome</label>
+    <input type="text" required>
+
+    <label>Telefone</label>
+    <input type="tel" required>
+
+    <label>Tipo de procedimento</label>
+    <select required>
+        <option>Podologia Clínica</option>
+        <option>Unha encravada</option>
+        <option>Pé diabético</option>
+    </select>
+
+    <label>Data desejada</label>
+    <input type="date" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+</body>
+</html>
